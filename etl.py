@@ -1,12 +1,5 @@
-import os
-from dotenv import load_dotenv
 import requests
 import pandas as pd
-from datetime import datetime
-
-load_dotenv()   # Load environment variables from .env file
-YOUR_API_KEY = os.getenv("YOUR_API_KEY")
-YOUR_LOCATION = os.getenv("YOUR_LOCATION")
 
 def fetch_aqi(key,location):
     url = f"https://api.waqi.info/feed/{location}/?token={key}"
@@ -16,6 +9,6 @@ def fetch_aqi(key,location):
     location=response['data']['city']['name']
     return pd.DataFrame([{'datetime': time, 'aqi': aqi , 'location':location}])
 
-data = fetch_aqi(YOUR_API_KEY,YOUR_LOCATION)
-
-print(data)
+# # To test data
+# data = fetch_aqi(YOUR_API_KEY,YOUR_LOCATION)
+# print(f"Here is data what we got: \n {data}")
